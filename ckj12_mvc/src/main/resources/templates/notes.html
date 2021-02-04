@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
 <meta charset="UTF-8">
 <title>Notes list</title>
 <link rel="stylesheet" href="/styles/notes.css">
+<link rel="stylesheet" href="/styles/navbar.css">
+
 </head>
 <body>
+	<div th:insert="home :: navbar"></div>
 	<div class="cnt">
 		<div class="search">
 			<form action="/notes/search">

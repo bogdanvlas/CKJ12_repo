@@ -9,6 +9,7 @@ import com.example.demo.model.Note;
 
 @Repository
 public interface NoteRepository extends CrudRepository<Note, Integer> {
+	// @Query
 	// SELECT * FROM notes WHERE label LIKE '%word%' OR message LIKE '%word%'
 	public List<Note> findByLabelContainingOrMessageContaining(String label, String msg);
 }
