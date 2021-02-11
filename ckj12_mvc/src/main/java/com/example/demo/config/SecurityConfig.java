@@ -36,9 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.hasRole("ADMIN")
 			.and()
 			.formLogin()
+			.loginPage("/login")
 			.and()
 			.logout()
 			.logoutSuccessUrl("/")
+			.and()
+			.exceptionHandling()
+			.accessDeniedPage("/login?denied")
 			.and()
 			.csrf()
 			.disable();

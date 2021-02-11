@@ -20,9 +20,16 @@ public class UserSecurityDetailsService implements UserDetailsService {
 		this.userRepository = userRepository;
 	}
 
+	// вводим Credentials в форму логина
+	// POST запрос на сервер
+	//
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUsername(username);
+
+		if (user == null) {
+			throw new UsernameNotFoundException("Not found username: " + username);
+		}
 
 		UserSecurity us = new UserSecurity(user);
 		return us;

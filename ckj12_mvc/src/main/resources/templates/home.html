@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Home page</title>
@@ -11,12 +12,20 @@
 	<div class="navbar" th:fragment="navbar">
 		<ul>
 			<li><a href="/">Home</a></li>
-			<li><a href="/notes/all">Notes</a></li>
-			<li><a href="/users/all">Users</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="/notes/all">Notes</a></li>
+			<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/users/all">Users</a></li>
+			<li style="float: right;">
+				<div>
+					<a href="/login" sec:authorize="isAnonymous()">Login</a>
+				</div>
+				<div>
+					<a href="/logout" sec:authorize="isAuthenticated()">Logout</a>
+				</div>
+			</li>
 		</ul>
 	</div>
 	<div class="cnt">
-		<h1>This is homepage</h1>
+		<h1 th:text="${message}"></h1>
 	</div>
 </body>
 </html>

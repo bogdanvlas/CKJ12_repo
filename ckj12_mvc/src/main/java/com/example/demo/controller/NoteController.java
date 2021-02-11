@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +14,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Note;
+import com.example.demo.model.User;
 import com.example.demo.repository.NoteRepository;
+import com.example.demo.repository.UserRepository;
 
 @Controller
 @RequestMapping("/notes")
 public class NoteController {
 
+	private UserRepository userRepository;
+
 	private NoteRepository noteRepository;
 
 	@Autowired
-	public NoteController(NoteRepository noteRepository) {
+	public NoteController(UserRepository userRepository, NoteRepository noteRepository) {
+		this.userRepository = userRepository;
 		this.noteRepository = noteRepository;
 	}
 
 	@GetMapping("/all")
-	public String notes(Model model) {
-		model.addAttribute("notes", noteRepository.findAll());
+	public String notes(Model model, Principal principal) {
+		if (principal != null) {
+			User user = userRepository.findByUsername(principal.getName());
+			List<Note> notes = user.getNotes();
+			model.addAttribute("notes", notes);
+		} else {
+			model.addAttribute("notes", noteRepository.findAll());
+		}
 		return "notes";
 	}
 
@@ -38,8 +50,13 @@ public class NoteController {
 	}
 
 	@PostMapping("/add")
-	public String add(@ModelAttribute("note") Note note) {
-		noteRepository.save(note);
+	public String add(@ModelAttribute("note") Note note, Principal prl) {
+		if (prl != null) {
+			User user = userRepository.findByUsername(prl.getName());
+			user.addNote(note);
+			noteRepository.save(note);
+			userRepository.save(user);
+		}
 		return "redirect:/notes/all";
 	}
 
