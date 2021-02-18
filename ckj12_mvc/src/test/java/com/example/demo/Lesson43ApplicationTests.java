@@ -17,7 +17,7 @@ class Lesson43ApplicationTests {
 
 	@Test
 	void test() {
-		String encoded = passwordEncoder.encode("petr");
+		String encoded = passwordEncoder.encode("admin");
 		System.out.println("This is encoded password!");
 		System.out.println(encoded);
 	}

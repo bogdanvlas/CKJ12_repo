@@ -25,11 +25,12 @@ public class User {
 
 	private String username;
 	private String password;
-	private String role;
-
 	private String name;
 	private int age;
 	private String gender;
+	
+	
+	private String role;
 
 	@OneToMany(mappedBy = "user")
 	private List<Note> notes;

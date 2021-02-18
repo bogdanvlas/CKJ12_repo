@@ -10,19 +10,28 @@
 </head>
 <body>
 	<div class="navbar" th:fragment="navbar">
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li sec:authorize="isAuthenticated()"><a href="/notes/all">Notes</a></li>
-			<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/users/all">Users</a></li>
-			<li style="float: right;">
-				<div>
-					<a href="/login" sec:authorize="isAnonymous()">Login</a>
-				</div>
-				<div>
-					<a href="/logout" sec:authorize="isAuthenticated()">Logout</a>
-				</div>
-			</li>
-		</ul>
+		<div class="block">
+			<div>
+				<a href="/">Home</a>
+			</div>
+			<div sec:authorize="isAuthenticated()">
+				<a href="/notes/all">Notes</a>
+			</div>
+			<div sec:authorize="hasRole('ROLE_ADMIN')">
+				<a href="/users/all">Users</a>
+			</div>
+		</div>
+		<div class="block">
+			<div>
+				<a href="/login" sec:authorize="isAnonymous()">Login</a>
+			</div>
+			<div>
+				<a href="/signup" sec:authorize="isAnonymous()">Sign Up</a>
+			</div>
+			<div>
+				<a href="/logout" sec:authorize="isAuthenticated()">Logout</a>
+			</div>
+		</div>
 	</div>
 	<div class="cnt">
 		<h1 th:text="${message}"></h1>
