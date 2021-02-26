@@ -1,0 +1,33 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql8-177b5606c8b-2c2811ccb62de462": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "et2qf6lku9htrf19",
+			"save-password": true,
+			"show-system-objects": true,
+			"read-only": false,
+			"configuration": {
+				"host": "d3y0lbg7abxmbuoi.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
+				"port": "3306",
+				"database": "et2qf6lku9htrf19",
+				"url": "jdbc:mysql://d3y0lbg7abxmbuoi.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/et2qf6lku9htrf19",
+				"home": "C:\\Program Files\\MySQL\\mysql-8.0.23-winx64",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Разработка",
+			"color": "255,255,255",
+			"description": "База данных для разработки",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}
